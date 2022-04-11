@@ -1,0 +1,21 @@
+.main {
+    margin: 2rem;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.tile {
+    font-size: 0.8rem;
+    width: 20px;
+    height: 20px;
+    background-color: beige;
+    padding: 1rem;
+    margin: 2px;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}
