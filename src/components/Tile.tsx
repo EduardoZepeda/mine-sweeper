@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import styles from '../Main.module.css'
 import { GameStateContext, coordinate } from '../context/gameState'
 import getAdjacentZeroes from '../utils/getAdjacentZeroes'
-
+import checkWinCondition from '../utils/checkWinCondition'
 
 interface tileProps {
     isClicked: boolean
@@ -38,20 +38,22 @@ const Tile = ({ isBomb, isClicked, isMarked, adjacentBombs, coordinateX, coordin
 
     const handleClick = (): void => {
         // If game finished do nothing
-        if (gameState.gameStatus === 'lost' || isMarked) {
+        if (gameState.gameStatus === 'lost' || isMarked || isClicked) {
             return
         }
         // if a no bomb tile is clicked, show the adjacent number of bombs
         if (!isBomb) {
+            const newBoard = gameState.board.map((row, indexBoard) => row.map((tile, indexRow) => {
+                if (coordinateX === indexBoard && coordinateY === indexRow) {
+                    return { ...tile, isClicked: true }
+                }
+                return tile
+            }))
             setGameState({
                 ...gameState,
                 revealedTiles: gameState.revealedTiles + 1,
-                board: gameState.board.map((row, indexBoard) => row.map((tile, indexRow) => {
-                    if (coordinateX === indexBoard && coordinateY === indexRow) {
-                        return { ...tile, isClicked: true }
-                    }
-                    return tile
-                }))
+                gameStatus: checkWinCondition(newBoard, gameState.bombs) ? 'won' : gameState.gameStatus,
+                board: newBoard
             })
         }
 
@@ -69,16 +71,18 @@ const Tile = ({ isBomb, isClicked, isMarked, adjacentBombs, coordinateX, coordin
             })
         }
         if (adjacentBombs === 0 && !isBomb) {
-            console.log(adjacentBombs)
             const adjacentZeroes = getAdjacentZeroes([coordinateX, coordinateY], gameState.board)
+            const newBoard = gameState.board.map((row, x) => row.map((tile, y) => {
+                if (adjacentZeroes.some((zeroCoordinate: coordinate) => zeroCoordinate[0] === x && zeroCoordinate[1] === y)) {
+                    return { ...tile, isClicked: true }
+                }
+                return tile
+            }))
+            console.log(newBoard)
             setGameState({
                 ...gameState,
-                board: gameState.board.map((row, x) => row.map((tile, y) => {
-                    if (adjacentZeroes.some((zeroCoordinate: coordinate) => zeroCoordinate[0] === x && zeroCoordinate[1] === y)) {
-                        return { ...tile, isClicked: true }
-                    }
-                    return tile
-                }))
+                gameStatus: checkWinCondition(newBoard, gameState.bombs) ? 'won' : gameState.gameStatus,
+                board: newBoard
             })
         }
     }
