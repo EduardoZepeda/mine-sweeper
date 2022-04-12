@@ -11,7 +11,7 @@ const Main = (): JSX.Element => {
 
     return (
         <main className={styles.main}>
-            {MainContent}
+            {gameState.gameStatus === 'won' ? <h2>You won!</h2> : MainContent}
         </main>
     )
 

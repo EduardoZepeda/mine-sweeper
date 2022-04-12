@@ -9,7 +9,12 @@ const Header = (): JSX.Element => {
   return (
     <header className={styles.header}>
       <div>Mine Sweeper 💣</div>
-      <button disabled={gameState.board.length === 0 ? true : false} onClick={() => setGameState({ board: [], finishedGame: false })} className={styles.resetBtn}>Reset game</button>
+      <button
+        disabled={gameState.board.length === 0 ? true : false}
+        onClick={() => setGameState({ board: [], gameStatus: 'start', bombs: gameState.bombs, flags: 0, revealedTiles: 0 })}
+        className={styles.resetBtn}>
+        Reset game
+      </button>
     </header>
   )
 }

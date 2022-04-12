@@ -8,8 +8,11 @@ import { useState } from 'react'
 function App(): React.ReactElement {
 
   const initialState: gameStateProps = {
-    finishedGame: false,
+    gameStatus: 'start',
     board: [],
+    bombs: 0,
+    flags: 0,
+    revealedTiles: 0
   }
 
   const [gameState, setGameState] = useState(initialState)

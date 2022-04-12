@@ -1,7 +1,6 @@
-import React, { useState, useContext } from 'react'
+import { useContext } from 'react'
 import styles from '../Main.module.css'
-import { GameStateContext, tile } from '../context/gameState'
-import getAdjacentTiles from '../utils/getAdjacentTiles'
+import { GameStateContext, coordinate } from '../context/gameState'
 import getAdjacentZeroes from '../utils/getAdjacentZeroes'
 
 
@@ -17,16 +16,36 @@ interface tileProps {
 const Tile = ({ isBomb, isClicked, isMarked, adjacentBombs, coordinateX, coordinateY }: tileProps): JSX.Element => {
     const { gameState, setGameState } = useContext(GameStateContext)
 
+    const handleRightClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>): void => {
+        event.preventDefault()
+        if (gameState.gameStatus === 'lost') {
+            return
+        }
+        if (!isClicked) {
+            const sumOrRest = isMarked ? -1 : 1
+            setGameState({
+                ...gameState,
+                flags: gameState.flags + sumOrRest,
+                board: gameState.board.map((row, indexBoard) => row.map((tile, indexRow) => {
+                    if (coordinateX === indexBoard && coordinateY === indexRow) {
+                        return { ...tile, isMarked: !tile.isMarked }
+                    }
+                    return tile
+                }))
+            })
+        }
+    }
 
-    const handleClick = () => {
+    const handleClick = (): void => {
         // If game finished do nothing
-        if (gameState.finishedGame) {
+        if (gameState.gameStatus === 'lost' || isMarked) {
             return
         }
         // if a no bomb tile is clicked, show the adjacent number of bombs
         if (!isBomb) {
             setGameState({
-                finishedGame: false,
+                ...gameState,
+                revealedTiles: gameState.revealedTiles + 1,
                 board: gameState.board.map((row, indexBoard) => row.map((tile, indexRow) => {
                     if (coordinateX === indexBoard && coordinateY === indexRow) {
                         return { ...tile, isClicked: true }
@@ -35,10 +54,12 @@ const Tile = ({ isBomb, isClicked, isMarked, adjacentBombs, coordinateX, coordin
                 }))
             })
         }
-        // if a bomb is clicked, show all other bombs
+
+        // if a bomb is clicked, show all other bombs and end the game
         if (isBomb) {
             setGameState({
-                finishedGame: true,
+                ...gameState,
+                gameStatus: 'lost',
                 board: gameState.board.map((row) => row.map((tile) => {
                     if (tile.isBomb) {
                         return { ...tile, isClicked: true }
@@ -47,26 +68,25 @@ const Tile = ({ isBomb, isClicked, isMarked, adjacentBombs, coordinateX, coordin
                 }))
             })
         }
-        // if (adjacentBombs === 0) {
-        //     const adjacentTiles = getAdjacentTiles([coordinateX, coordinateY])
-        //     const validCoordenates = adjacentTiles.filter(coordinate => coordinate[0] >= 0 && coordinate[0] < gameState.board.length && coordinate[1] >= 0 && coordinate[1] < gameState.board[0].length)
-        //     validCoordenates.push([coordinateX, coordinateY])
-
-        //     setGameState({
-        //         board: gameState.board.map((row, x) => row.map((tile, y) => {
-        //             if (tile.adjacentBombs === 0 && validCoordenates.some(arr => arr[0] === x && arr[1] === y)) {
-        //                 return { ...tile, isClicked: true }
-        //             }
-        //             return tile
-        //         }))
-        //     })
-        // }
+        if (adjacentBombs === 0 && !isBomb) {
+            console.log(adjacentBombs)
+            const adjacentZeroes = getAdjacentZeroes([coordinateX, coordinateY], gameState.board)
+            setGameState({
+                ...gameState,
+                board: gameState.board.map((row, x) => row.map((tile, y) => {
+                    if (adjacentZeroes.some((zeroCoordinate: coordinate) => zeroCoordinate[0] === x && zeroCoordinate[1] === y)) {
+                        return { ...tile, isClicked: true }
+                    }
+                    return tile
+                }))
+            })
+        }
     }
 
-    const content = isClicked ? (isBomb ? '💣' : adjacentBombs) : (isMarked ? "marcado" : null)
+    const content = isClicked ? (isBomb ? '💣' : adjacentBombs) : (isMarked ? "🚩" : null)
 
     return (
-        <div onClick={() => handleClick()} className={styles.tile}>{content}</div>
+        <div onContextMenu={handleRightClick} onClick={handleClick} className={styles.tile}>{content}</div>
     )
 }
 

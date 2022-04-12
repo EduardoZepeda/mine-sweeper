@@ -11,7 +11,6 @@ type row = Array<tile>
 
 export type coordinate = [number, number]
 export type coordinates = coordinate[]
-
 export type board = row[]
 
 export interface gameOption {
@@ -23,7 +22,10 @@ export interface gameOption {
 
 export interface gameStateProps {
     board: board
-    finishedGame: boolean
+    gameStatus: 'start' | 'lost' | 'won'
+    bombs: number
+    flags: number
+    revealedTiles: number
 }
 
 export interface gameStateContextProps {
@@ -36,7 +38,10 @@ export const GameStateContext = createContext<gameStateContextProps>(
         setGameState: () => { },
         gameState: {
             board: [],
-            finishedGame: false
+            gameStatus: 'start',
+            bombs: 0,
+            flags: 0,
+            revealedTiles: 0,
         }
     })
 

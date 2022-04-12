@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { GameStateContext, tile } from '../context/gameState'
+import { GameStateContext } from '../context/gameState'
 import styles from '../Main.module.css'
 import Tile from './Tile'
 
@@ -26,8 +26,9 @@ const Board = (): JSX.Element => {
     })
     return (
         <div>
-            <h2>{gameState.finishedGame ? "Game over!" : "Be careful!"}</h2>
-            <p><small>{gameState.finishedGame ? "See you space cowboy!" : "Don't explode!"}</small></p>
+            <h2>{gameState.gameStatus === 'lost' ? "Game over!" : "Be careful!"}</h2>
+            <p><small>{gameState.gameStatus === 'lost' ? "See you space cowboy!" : "Don't explode!"}</small></p>
+            <p>{`💣: ${gameState.bombs - gameState.flags} 🚩: ${gameState.flags}`}</p>
             {Board}
         </div>
     )

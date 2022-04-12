@@ -42,6 +42,20 @@
     border-radius: var(--border-radius);
 }
 
+.customDifficulty {
+    display: flex;
+    flex-direction: column;
+}
+
+.customGameButton {
+    border: 0px;
+    margin-top: 1rem;
+    padding: var(--padding-1x);
+    background-color: var(--tile);
+    color: var(--main-text);
+    border-radius: var(--border-radius);
+}
+
 
 @media (max-width: 768px) {
     .tile {

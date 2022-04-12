@@ -5,7 +5,7 @@
   --footer-bg: var(--background);
   --title: #FFF;
   --main-text: #FFF;
-  --secondary-text: #FFF;
+  --secondary-text: #AAAAAA;
   --padding-2x: 2rem;
   --padding-1x: 1rem;
   --border-radius: 4px;
@@ -29,6 +29,10 @@ a:active {
   font-weight: bold;
   text-decoration: none;
   color: inherit;
+}
+
+p {
+  color: var(--secondary-text);
 }
 
 code {
