@@ -1,5 +1,14 @@
 :root {
-  --tile: green;
+  --background: #090f15;
+  --tile: #3f78c4;
+  --header-bg: var(--background);
+  --footer-bg: var(--background);
+  --title: #FFF;
+  --main-text: #FFF;
+  --secondary-text: #FFF;
+  --padding-2x: 2rem;
+  --padding-1x: 1rem;
+  --border-radius: 4px;
 }
 
 body {
@@ -10,6 +19,16 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100vh;
+  background-color: var(--background);
+  color: var(--main-text);
+}
+
+a,
+a:visited,
+a:active {
+  font-weight: bold;
+  text-decoration: none;
+  color: inherit;
 }
 
 code {

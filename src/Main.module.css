@@ -1,21 +1,51 @@
 .main {
     margin: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
 }
 
 .row {
     display: flex;
     flex-direction: row;
+    justify-content: center;
 }
 
 .tile {
     font-size: 0.8rem;
-    width: 20px;
-    height: 20px;
-    background-color: beige;
-    padding: 1rem;
+    width: 50px;
+    height: 50px;
+    background-color: var(--tile);
+    color: var(--main-text);
     margin: 2px;
     display: flex;
     align-content: center;
     align-items: center;
     justify-content: center;
+}
+
+.boardOptionsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.boardOption {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: var(--padding-2x);
+    background-color: var(--tile);
+    font-size: 0.8rem;
+    border-radius: var(--border-radius);
+}
+
+
+@media (max-width: 768px) {
+    .tile {
+        width: 30px;
+        height: 30px;
+    }
 }

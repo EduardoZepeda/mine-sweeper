@@ -1,5 +1,4 @@
-type coordinate = [number, number]
-type coordinates = coordinate[]
+import { coordinate, coordinates } from '../context/gameState'
 
 const getAdjacentTiles = (coordinate: coordinate): coordinates => {
   const x = coordinate[0]

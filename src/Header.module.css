@@ -1,3 +1,21 @@
 .header {
-    background-color: aqua;
+    background-color: var(--header-bg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--padding-2x);
+}
+
+.header>.resetBtn {
+    border: 1px solid var(--tile);
+    border-radius: var(--border-radius);
+    padding: var(--padding-1x);
+    background-color: transparent;
+    color: var(--main-text);
+    cursor: pointer;
+}
+
+.header>.resetBtn:disabled {
+    opacity: 0.5;
+    cursor: auto;
 }

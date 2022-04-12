@@ -1,0 +1,7 @@
+.footer {
+    background-color: var(--footer-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--padding-2x);
+}
