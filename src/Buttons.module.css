@@ -1,0 +1,8 @@
+.resetBtn {
+    border: 1px solid var(--tile);
+    border-radius: var(--border-radius);
+    padding: var(--padding-1x);
+    background-color: transparent;
+    color: var(--main-text);
+    cursor: pointer;
+}

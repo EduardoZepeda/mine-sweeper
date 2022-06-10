@@ -78,7 +78,6 @@ const Tile = ({ isBomb, isClicked, isMarked, adjacentBombs, coordinateX, coordin
                 }
                 return tile
             }))
-            console.log(newBoard)
             setGameState({
                 ...gameState,
                 gameStatus: checkWinCondition(newBoard, gameState.bombs) ? 'won' : gameState.gameStatus,

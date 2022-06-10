@@ -10,7 +10,7 @@ const SelectBoard = () => {
     const { setGameState } = useContext(GameStateContext)
 
     const availableGameOptions: gameOption[] = [
-        { width: 5, height: 5, bombs: 5, title: "Easy" },
+        { width: 5, height: 5, bombs: 3, title: "Easy" },
         { width: 10, height: 10, bombs: 15, title: "Medium" },
         { width: 12, height: 12, bombs: 50, title: "Hard" },
     ]

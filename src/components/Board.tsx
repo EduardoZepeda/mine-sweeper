@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { GameStateContext } from '../context/gameState'
 import styles from '../Main.module.css'
 import Tile from './Tile'
-
+import ResetButton from './ResetButton'
 
 const Board = (): JSX.Element => {
     const { gameState } = useContext(GameStateContext)
