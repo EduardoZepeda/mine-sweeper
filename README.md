@@ -1,6 +1,16 @@
-# Getting Started with Create React App
+# Mine sweeper
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Mine sweeper written in typescript
+
+4 difficulty levels:
+- easy (5x5) 3 bombs
+- medium (10x10) 15 bombs
+- hard (12x12) 50 bombs
+- customized (nxn) y bombs
+
+Functionality
+- reset game
+- mark tiles as bombs
 
 ## Available Scripts
 
