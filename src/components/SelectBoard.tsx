@@ -18,7 +18,7 @@ const SelectBoard = () => {
     const handleClick = (width: number, height: number, bombs: number) => {
         const newBoard = createBoard(width, height, bombs)
         setGameState({
-            gameStatus: 'start',
+            gameStatus: 'progress',
             board: newBoard,
             bombs: bombs,
             flags: 0,

@@ -22,7 +22,7 @@ export interface gameOption {
 
 export interface gameStateProps {
     board: board
-    gameStatus: 'start' | 'lost' | 'won'
+    gameStatus: 'start' | 'lost' | 'won' | 'progress'
     bombs: number
     flags: number
     revealedTiles: number

@@ -4,6 +4,7 @@ import Main from './components/Main'
 import Footer from './components/Footer'
 import { GameStateContext, gameStateProps } from './context/gameState'
 import { useState } from 'react'
+import styles from './Main.module.css'
 
 function App(): React.ReactElement {
 
@@ -21,7 +22,9 @@ function App(): React.ReactElement {
     <GameStateContext.Provider value={{ gameState: gameState, setGameState: setGameState }}>
       <div className='App'>
         <Header />
-        <Main />
+        <main className={styles.main}>
+          <Main />
+        </main>
         <Footer />
       </div>
     </GameStateContext.Provider>

@@ -25,8 +25,6 @@ const Board = (): JSX.Element => {
     })
     return (
         <div>
-            <h2>{gameState.gameStatus === 'lost' ? "Game over!" : "Be careful!"}</h2>
-            <p><small>{gameState.gameStatus === 'lost' ? "See you space cowboy!" : "Don't explode!"}</small></p>
             <p>{`💣: ${gameState.bombs - gameState.flags} 🚩: ${gameState.flags}`}</p>
             {Board}
         </div>
