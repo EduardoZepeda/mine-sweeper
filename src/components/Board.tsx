@@ -3,7 +3,7 @@ import { GameStateContext } from '../context/gameState'
 import styles from '../Main.module.css'
 import Tile from './Tile'
 
-const Board = (): JSX.Element => {
+const Board = (): React.ReactElement => {
     const { gameState } = useContext(GameStateContext)
     const Board = gameState.board.map((row, coordinateX) => {
         return (

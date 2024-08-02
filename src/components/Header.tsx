@@ -3,7 +3,7 @@ import React from 'react'
 import styles from '../Header.module.css'
 import ResetButton from './ResetButton'
 
-const Header = (): JSX.Element => {
+const Header = (): React.ReactElement => {
 
   return (
     <header className={styles.header}>

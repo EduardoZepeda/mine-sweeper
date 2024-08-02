@@ -13,7 +13,7 @@ interface tileProps {
     coordinateY: number
 }
 
-const Tile = ({ isBomb, isClicked, isMarked, adjacentBombs, coordinateX, coordinateY }: tileProps): JSX.Element => {
+const Tile = ({ isBomb, isClicked, isMarked, adjacentBombs, coordinateX, coordinateY }: tileProps): React.ReactElement => {
     const { gameState, setGameState } = useContext(GameStateContext)
 
     const handleRightClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>): void => {

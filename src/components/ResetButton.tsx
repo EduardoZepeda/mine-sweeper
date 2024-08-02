@@ -3,7 +3,7 @@ import styles from '../Buttons.module.css'
 
 import { GameStateContext } from '../context/gameState'
 
-const ResetButton = (): JSX.Element => {
+const ResetButton = (): React.ReactElement => {
     const { gameState, setGameState } = useContext(GameStateContext)
     return (
         <button
