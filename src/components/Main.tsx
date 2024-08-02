@@ -35,7 +35,7 @@ const Main = (): React.ReactElement => {
     // otherwise won
     return (
         <>
-            <h2>You won!</h2>
+            <h2>Congratulations! You won!</h2>
             <p />
             <ResetButton />
         </>
